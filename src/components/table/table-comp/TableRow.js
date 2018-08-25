@@ -20,10 +20,15 @@ class TableRow extends Component {
 
     render() {
         let columns = this.props.columns
+
+        let childData = null
+        if(!this.state.datas) {
+            childData = this.state.datas.filter(data => data.colName == column.name).value
+        }
         return (
             <tr>
                 {columns.map(column => {
-                    return (<TableCell editable={this.props.editable} data={this.state.datas.filter(data => data.colName == column.name).value} />)
+                    return (<TableCell editable={this.props.editable} data={childData} />)
                 })}
             </tr>
         )
