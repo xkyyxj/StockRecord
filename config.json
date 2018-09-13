@@ -1,3 +1,5 @@
 {
-    "DEV": false
+    "DEV": true,
+    "TEMPLET_PATH": "D:'\\workspace\\web\\stock_data\\templet.txt",
+    "STORAGE_PATH": "D:\\workspace\\web\\stock_data.txt"
 }

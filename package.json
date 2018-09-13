@@ -5,6 +5,8 @@
   "main": "main.js",
   "homepage": ".",
   "dependencies": {
+    "bootstrap": "^4.1.3",
+    "classnames": "^2.2.6",
     "electron": "^2.0.8",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
@@ -15,7 +17,8 @@
     "build": "cross-env NODE_ENV=development webpack --config webpack.dev.config.js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "ele-st": "electron ."
+    "ele-st": "electron .",
+    "build-cpp": ".\\node_modules\\.bin\\electron-rebuild.cmd"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
@@ -24,7 +27,9 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "cross-env": "^5.2.0",
+    "electron-rebuild": "^1.8.2",
     "html-webpack-plugin": "^3.2.0",
+    "node-gyp": "^3.8.0",
     "node-sass": "^4.9.3",
     "sass-loader": "^7.1.0",
     "sass-resources-loader": "^1.3.3",

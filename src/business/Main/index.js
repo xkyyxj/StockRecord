@@ -1,24 +1,27 @@
 import React, {Component} from 'react'
 
-//import ExTable from '../exTable/index'
+import ExTable from '../exTable/index'
 
 class App extends Component {
     constructor(props) {
         super(props)
         console.log("?????????????????????")
+        this.state = {
+            columns: ['start','1','2','3','4'],
+            datas: [['1','2','3','4','5']]
+        }
     }
 
     componentDidMount() {
-        //加载数据
-        console.log('what the fuck?????')
+        //加载数
 
     }
 
     render() {
         return (
             <div>
-                123123alsdfjlasdjkflasdjflasjdfljalsslslslslwrwerwe
-                {/*<ExTable/>*/}
+                
+                <ExTable columns={this.state.columns} datas={this.state.datas}/>
             </div>
         )
     }

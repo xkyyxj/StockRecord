@@ -3,7 +3,7 @@ const electron = require('electron')
 const app = electron.app
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
-
+const hello = require("./bin/win32-x64-57/stock1")
 const path = require('path')
 const url = require('url')
 
@@ -19,8 +19,9 @@ const {ipcMain} = require('electron')
 let mainWindow
 
 function createWindow () {
+  console.log(hello.hello())
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 400, height: 600,frame:false})
+  mainWindow = new BrowserWindow({width: 1200, height: 800,frame:false})
 
   mainWindow.webContents.openDevTools()
 

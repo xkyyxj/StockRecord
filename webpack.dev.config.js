@@ -11,11 +11,11 @@ let devConfig = {
         inline: true,
         lazy: false,
         contentBase: path.join(__dirname, 'build'),
-        publicPath: 'http://localhost:1112/build',
+        publicPath: 'http://localhost:3000/',
         disableHostCheck: true, // do not use production
         historyApiFallback: true,
         hot: true,
-        port: 1112
+        port: 3000
     },
     plugins: [
         //必须添加这个东西才能够通过webpack-dev-server启动起来，醉了

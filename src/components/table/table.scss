@@ -1,0 +1,22 @@
+.my-table {
+    border: 0;
+    tbody tr {
+        border: 0px;
+        background-color: #faf7f7;
+    }
+
+    tbody tr:focus {
+        border: 0px;
+        background-color: #3671f0;
+    }
+
+    td {
+        border: 0;
+        padding: 0px;
+    }
+
+    th: {
+        border: 0;
+        padding: 0px;
+    }
+}

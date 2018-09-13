@@ -1,0 +1,19 @@
+$default-background-color: #fdfdfd;
+$editable-back-color: rgb(243, 243, 240);
+
+input {
+    outline: 0px;
+    border-width: 1px;
+    border-color: $default-background-color;
+    background-color: $default-background-color;
+    &:disabled {
+        background-color: $default-background-color;
+    }
+    &:focus {
+        border-width: 1px;
+        border-color: #89c6f0;
+        -webkit-boxshow: 2px 2px 2px rgb(199, 194, 194) inset;
+        background-color: $editable-back-color
+    }
+
+}

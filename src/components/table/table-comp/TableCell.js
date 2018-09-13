@@ -1,25 +1,24 @@
 import React, {Component} from 'react'
+import classnames from 'classnames'
+
+import './table-cell.scss'
 
 /**
- * props.columns
- *      1. 数组，每个元素包含了一列显示的所有必须信息
- *      2. {
- *              name:
- *              
- *         }
+ * render函数：
+ *  index: 当前行号（从0开始）
+ *  name: 当前列名
+ *  data: 修改后的值
  */
 class TableCell extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            data: null
-        }
     }
 
     render() {
+        let {render, data} = this.props
         return (
             <td>
-                <input disabled={this.props.editable}>{this.state.data}</input>
+                {render && typeof render == 'function' ? render(this.props.index,this.props.name,data) : data}
             </td>
         )
     }
