@@ -1,0 +1,16 @@
+.divider {
+    display: flex;
+    .left-comp {
+        overflow: scroll;
+    }
+
+    .line {
+        cursor: col-resize;
+        width: 6px;
+        background-color: rgb(192, 52, 52);
+    }
+
+    .right-comp {
+        overflow: scroll;
+    }
+}

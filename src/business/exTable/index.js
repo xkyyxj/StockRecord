@@ -6,8 +6,9 @@ const readline = window.require('readline')
 import React,{Component} from 'react'
 
 import { Table } from '../../components/'
-import { Tree, TreeNode } from '../../components/tree'
+import { Tree, TreeNode, SimpleTree } from '../../components/tree'
 import TimePicker from '../../components/timePicker/TimePicker.js'
+import Divider from '../../components/divider/Divider'
 
 import Config from '../../../config.json'
 
@@ -93,19 +94,41 @@ class ExTable extends Component {
     }
 
     render() {
+        let treeData = [
+            {key: 1,parentKey: null,display: '1', data: 1},
+            {key: 2,parentKey: 1,display: '2', data: 2},
+            {key: 3,parentKey: 2,display: '3', data: 3}
+        ]
         return (
             <div>
-                <Tree>
-                    <TreeNode data={1}>
-                        <TreeNode data={2}>
-                            <TreeNode data={3}></TreeNode>
-                        </TreeNode>
-                    </TreeNode>
-                </Tree>
-                <button className='button' onClick={this.onEditClick.bind(this)}>修改</button>
-                <button className='button' onClick={this.onStopEditClick.bind(this)}>取消</button>
-                <Table columns={this.state.columns} datas={this.state.datas} />
-                <TimePicker/>
+                <Divider
+                    // leftComp={(<Tree>
+                    //             <TreeNode data={1}>
+                    //                 <TreeNode data={2}>
+                    //                     <TreeNode data={3}></TreeNode>
+                    //                 </TreeNode>
+                    //             </TreeNode>
+                    //         </Tree>)}
+                    leftComp={(
+                        <SimpleTree data={treeData}>
+                            <TreeNode display={1}>
+                                     <TreeNode display={2}>
+                                         <TreeNode display={3}></TreeNode>
+                                     </TreeNode>
+                                </TreeNode>
+                        </SimpleTree>
+                    )}
+                    rightComp={(
+                        <div>
+                            <button className='button' onClick={this.onEditClick.bind(this)}>修改</button>
+                            <button className='button' onClick={this.onStopEditClick.bind(this)}>取消</button>
+                            <Table columns={this.state.columns} datas={this.state.datas} />
+                            <TimePicker/>
+                        </div>
+                    )}
+                />
+                
+                
             </div>
         )
     }

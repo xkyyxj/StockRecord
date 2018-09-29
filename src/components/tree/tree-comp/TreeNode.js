@@ -9,8 +9,9 @@ class TreeNode extends Component {
     }
 
     onNodeClick() {
-        if(this.props.onNodeClick && typeof this.props.onNodeClick == 'function') {
-            this.props.onNodeClick(this.props.data)
+        console.log("node clicked?")
+        if(this.props.onNodeSelected && typeof this.props.onNodeSelected == 'function') {
+            this.props.onNodeSelected(this.props.data)
         }
     }
 
@@ -20,13 +21,19 @@ class TreeNode extends Component {
         })
     }
 
+    //子节点添加相关事件
+    _constructChildren() {
+        return React.Children.map(this.props.children, child => {
+            return React.cloneElement(child, {onNodeSelected: this.props.onNodeSelected})
+        })
+    }
+
     render() {
-        //{this.state.expanded ? '<' : '>'}
         return (
             <li>
-                {this.props.children ? (<span className='glyphicon glyphicon-search' onClick={this.expandClick.bind(this)}></span>) : ''}
-                <a>{this.props.data}</a>
-                {this.state.expanded ? (<ul>{this.props.children}</ul>) : null}
+                {this.props.children ? (<span className='glyphicon glyphicon-search' onClick={this.expandClick.bind(this)}>{this.state.expanded ? '<' : '>'}</span>) : ''}
+                <a onClick={this.onNodeClick.bind(this)}>{this.props.display}</a>
+                {this.state.expanded ? (<ul>{this._constructChildren()}</ul>) : null}
             </li>
         )
     }
