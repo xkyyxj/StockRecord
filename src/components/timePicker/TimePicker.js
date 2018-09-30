@@ -1,8 +1,6 @@
 import React,{Component} from 'react'
 import ReactDOM from 'react-dom'
 import { getDateArrayForDay } from './timepicker-comp/calDate'
-import classNames from 'classnames'
-
 import './timepicker.scss'
 
 class TimePicker extends Component {
@@ -92,7 +90,6 @@ class TimePicker extends Component {
 
     onInputClick(e) {
         let top = e.target.style.top
-        console.log(top)
         this.setState({
             showCalendar: true
         })
