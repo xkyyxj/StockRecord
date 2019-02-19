@@ -7,4 +7,10 @@
     .nodeTitle {
         margin-left: 4px;
     }
+
+    li {
+        .selected {
+            background-color: #228ed6;
+        }
+    }
 }

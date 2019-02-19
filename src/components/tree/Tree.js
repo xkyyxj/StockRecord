@@ -42,7 +42,12 @@ class Tree extends Component {
         let finalChildren = []
         if(allChildNodes) {
             finalChildren = React.Children.map(allChildNodes, child => {
-                return React.cloneElement(child, {onNodeSelected: this.onNodeSelected})
+                return React.cloneElement(child, 
+                    {
+                        onNodeSelected: this.onNodeSelected,
+                        selectedKeys: this.props.selectedKeys
+                    }
+                )
             })
         }
         return finalChildren

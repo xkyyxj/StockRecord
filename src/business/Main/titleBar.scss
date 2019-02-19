@@ -1,0 +1,50 @@
+.title-bar {
+    width: 100%;
+    -webkit-app-region: drag;
+
+    .title-main-content {
+        display: flex;
+        justify-content: space-between;
+    
+        width: 100%;
+    
+        background-color: #ffffff;
+
+        .ope-button {
+            .minimize-button {
+                width: 45px;
+                height: 40px;
+                color: rgba(206, 43, 43, 0.125);
+                background-color: rgba(123,255,255,0);
+                border: none;
+                outline: none;
+                -webkit-app-region: no-drag;
+
+                &:hover {
+                    background-color: grey;
+                }
+            }
+    
+            .close-button {
+                width: 45px;
+                height: 40px;
+                color: rgba(255,255,255,0.125);
+                background-color: rgba(255,255,255,0);
+                border: none;
+                outline: none;
+                -webkit-app-region: no-drag;
+    
+                &:hover {
+                    background-color: red;
+                }
+            }
+        }
+        
+    }
+
+    .titlebar-divider {
+        background-color: #000000;
+        height: 2px;
+        width: 100%;
+    }
+}

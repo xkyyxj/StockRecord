@@ -6,8 +6,9 @@ class IconButton extends Component {
     }
 
     render() {
-        let className = {}
-        return (<button src={this.props.iconPath}/>)
+        return (
+            <button>{this.props.children}</button>
+        )
     }
 
 }

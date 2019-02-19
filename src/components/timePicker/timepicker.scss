@@ -1,9 +1,9 @@
 .datetime-picker-modal {
-    position: absolute;
+    position: fixed;
     left: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
+    top: 0;
+    width: 0;
+    height: 0;
     .datetime-picker {
         position: absolute;
         z-index: 1080;
@@ -13,11 +13,43 @@
         padding: 5px 8px 5px 8px;
         background: #ffffff;
     
-        border: 1px solid #2a7ed3;
+        border: 1px solid #ccc;
+        box-shadow: 0 1px 5px #ccc;
+
+        .datePickHeader {
+            margin-bottom: 6px;
+        }
+
+        .divider-line {
+            background: #1889ca;
+            height: 3px;
+        }
+
         .picker-content {
             display: inline-block;
-            span.selected {
-                background: rgb(93, 113, 223)
+            span {
+                padding: 4px;
+                width: 100%;
+                height: 100%;
+                display: inline-block;
+                &.selected {
+                    background: rgb(98, 168, 233);
+                    border:1px solid #1d8dd8;
+                    border-radius: 10%;
+                }
+            }
+
+            .timepick-button {
+                background: #ffffff;
+                color: #2774cc;
+                border: 2px solid #2774cc;
+                border-radius: 15%;
+                //box-shadow: 1px 1px 2px #5d98c9 inset, 1px 1px 2px #5d98c9;
+                outline: 0;
+
+                &:focus {
+                    background: #84c7ee;
+                }
             }
         }
     }

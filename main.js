@@ -19,7 +19,7 @@ const {ipcMain} = require('electron')
 let mainWindow
 
 function createWindow () {
-  console.log(hello.hello())
+  console.log(hello.hello("from js world, Hello C++!"))
   // Create the browser window.
   mainWindow = new BrowserWindow({width: 1200, height: 800,frame:false})
 

@@ -3,7 +3,7 @@
     height: 100%;
     display: flex;
     .left-comp {
-        overflow: scroll;
+        overflow: auto;
     }
 
     .line {
@@ -15,6 +15,6 @@
     .right-comp {
         flex-grow: 1;
         max-width: 100%;
-        overflow: scroll;
+        overflow: auto;
     }
 }

@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 
 import ExTable from '../exTable/index'
+import TitleBar from './titleBar'
 import Divider from '../../components/divider/Divider'
 import { Tree, TreeNode, SimpleTree } from '../../components/tree'
 
@@ -26,20 +27,25 @@ class App extends Component {
         ]
         return (
             <div className="mainPage">
-                <Divider className="mainContent"
-                    leftComp={(
-                        <SimpleTree className='mainTree' data={treeData}>
-                            <TreeNode display={1}>
-                                     <TreeNode display={2}>
-                                         <TreeNode display={3}></TreeNode>
-                                     </TreeNode>
-                                </TreeNode>
-                        </SimpleTree>
-                    )}
-                    rightComp={(
-                      <ExTable className='mainTable'/>  
-                    )}
-                />
+                <div className='title'>
+                    <TitleBar/>
+                </div>
+                <div className="mainContent">
+                    <Divider
+                        leftComp={(
+                            <SimpleTree className='mainTree' data={treeData}>
+                                <TreeNode display={1}>
+                                        <TreeNode display={2}>
+                                            <TreeNode display={3}></TreeNode>
+                                        </TreeNode>
+                                    </TreeNode>
+                            </SimpleTree>
+                        )}
+                        rightComp={(
+                        <ExTable className='mainTable'/>  
+                        )}
+                    />
+                </div>
             </div>
         )
     }

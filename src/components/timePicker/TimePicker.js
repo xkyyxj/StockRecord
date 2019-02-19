@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom'
 import { getDateArrayForDay } from './timepicker-comp/calDate'
 import './timepicker.scss'
 
+/**
+ * 实现方式：ReactDOM.createPortal创建一个额外div挂载到body标签上
+ * document绑定监听事件，如果有点击事件的话，那么就隐藏弹窗层。
+ */
 class TimePicker extends Component {
     constructor(props) {
         super(props)
@@ -12,6 +16,9 @@ class TimePicker extends Component {
             format: 'yyyy-MM-dd',
             selectedDate: this.props.defaultValue ? this.props.defaultValue : new Date()
         }
+
+        this.onCancelClick = this.onCancelClick.bind(this)
+        this.onSelectSure = this.onSelectSure.bind(this)
     }
 
     componentWillReceiveProps(newProps) {
@@ -20,6 +27,19 @@ class TimePicker extends Component {
                 selectedDate: newProps.defaultValue
             })
         }
+    }
+
+    componentDidUpdate() {
+        if(this.state.showCalendar) {
+            window.document.addEventListener('click', this.onCancelClick, false)
+        }
+        else {
+            window.document.removeEventListener('click', this.onCancelClick)
+        }
+    }
+
+    componentWillUnmount() {
+        window.document.removeEventListener('click', this.onCancelClick)
     }
 
     _constructDatePickTdArr(dayArray,start) {
@@ -54,23 +74,19 @@ class TimePicker extends Component {
     }
 
     onSelectSure() {
-        if(this.props.onSelectedDate && typeof this.props.onSelectedDate) {
+        if(this.props.onSelectedDate && typeof this.props.onSelectedDate == 'function') {
             this.props.onSelectedDate(this.state.selectedDate)
-            this.setState({
-                showCalendar: false
-            })
         }
-    }
 
-    onCancelClick() {
         this.setState({
-            selectedDate: this.props.defaultValue ? this.props.defaultValue : new Date(),
             showCalendar: false
         })
     }
 
-    onBlur() {
+    onCancelClick() {
+        console.log('cancel Click!!!!!!!!!!!!!!!!!!!!!!')
         this.setState({
+            selectedDate: this.props.defaultValue ? this.props.defaultValue : new Date(),
             showCalendar: false
         })
     }
@@ -90,13 +106,15 @@ class TimePicker extends Component {
 
     onInputClick(e) {
         let top = e.target.style.top
+        this.popupX = e.pageX
+        this.popupY = e.pageY
         this.setState({
             showCalendar: true
         })
     }
 
     datePickClick(e) {
-        e.stopPropagation()
+        e.nativeEvent.stopImmediatePropagation()
     }
 
     render() {
@@ -104,10 +122,12 @@ class TimePicker extends Component {
         //改造一下，将日历组件改成弹出层的方式，ReactDOM.createPortal()的形式
         let datePickItemStyle = {
             display: this.state.showCalendar ? 'block' : 'none',
-            left: 0,
-            top: 0
+            position: 'absolute',
+            left: this.popupX,
+            top: this.popupY,
+            zIndex: 1234
         }
-        let dateValue = this.state.selectedDate ? this.state.selectedDate : new Date
+        let dateValue = this.state.selectedDate ? this.state.selectedDate : new Date()
         let datePickMain = null
         if(this.state.showCalendar) {
             let bodyDevs = document.getElementsByTagName('body')
@@ -116,11 +136,13 @@ class TimePicker extends Component {
                 bodyDev = bodyDevs[0]
             }
             let datePickContent = (
-                <div className='datetime-picker-modal' onClick={this.onBlur.bind(this)}>
+                <div className='datetime-picker-modal'>
                     <div className='datetime-picker' style={datePickItemStyle} onClick={this.datePickClick.bind(this)}>
                         <div className='picker-content'>
                             <div className='datePickHeader'>
                                 {`${dateValue.getFullYear()}年${dateValue.getMonth() + 1}月${dateValue.getDate()}日`}
+                            </div>
+                            <div className='divider-line'>
                             </div>
                             <table className='datePickBody'>
                                 <thead>
@@ -137,8 +159,8 @@ class TimePicker extends Component {
 
                             {/*确认取消按钮*/}
                             <div>
-                                <button onClick={this.onSelectSure.bind(this)}>确定</button>
-                                <button onClick={this.onCancelClick.bind(this)}>取消</button>
+                                <button className='timepick-button' onClick={this.onSelectSure}>确定</button>
+                                <button className='timepick-button' onClick={this.onCancelClick}>取消</button>
                             </div>
                         </div>
                     </div>
@@ -154,7 +176,6 @@ class TimePicker extends Component {
                         <input value={dateValue.toString()} onClick={this.onInputClick.bind(this)}/>
                     )
                 }
-                {datePickMain}
             </div>
         )
         return [datePickMain, childContent]
